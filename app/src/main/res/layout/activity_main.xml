@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#E6DFE2"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Registro de Usuario"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/user"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        />
+
+    <EditText
+        android:id="@+id/etuser"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Ingrese su Usuario"
+        android:gravity="center"
+        android:textSize="13dp"
+        android:drawableStart="@drawable/baseline_person_24"
+
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Nombre"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            />
+
+        <EditText
+            android:id="@+id/etfullname"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Ingrese su Nombre"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:drawableStart="@drawable/baseline_child_care_24"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Correo"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            />
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Ingrese su Correo"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:drawableStart="@drawable/baseline_alternate_email_24"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Contraseña"
+            android:textStyle="bold"
+            android:textColor="@color/blue"
+            />
+
+        <EditText
+            android:id="@+id/etpass"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Ingrese su Contraseña"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:drawableEnd="@drawable/baseline_lock_24"
+
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Palabra Reservada"
+            android:textColor="@color/blue"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etpalabraR"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Palabra Reservada"
+            android:gravity="center"
+            android:textSize="13dp"
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvmessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/btnsave"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginTop="7dp">
+
+
+        </Button>
+
+        <Button
+            android:id="@+id/btnsearch"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:layout_marginTop="7dp"
+            android:backgroundTint="#90ED23">
+
+
+        </Button>
+
+        <Button
+            android:id="@+id/btnedit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Editar"
+            android:layout_marginTop="7dp"
+            android:backgroundTint="@color/blue">
+
+
+        </Button>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <Button
+            android:id="@+id/btndelet"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Borrar"
+            android:layout_marginTop="7dp"
+            android:backgroundTint="#FF1616">
+
+
+        </Button>
+
+        <Button
+            android:id="@+id/btnlist"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Listar"
+            android:layout_marginTop="7dp"
+            android:backgroundTint="#1B7C73">
+
+
+        </Button>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

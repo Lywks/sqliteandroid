@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">appsqlite</string>
+    <string name="title">Registro de Usuario</string>
+    <string name="login">Conexion al Sistema</string>
+    <string name="user">Usuario</string>
+    <string name="pass">Contraseña</string>
+</resources>
