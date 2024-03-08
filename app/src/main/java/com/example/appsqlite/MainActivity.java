@@ -2,6 +2,10 @@ package com.example.appsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,23 +59,87 @@ public class MainActivity extends AppCompatActivity {
                 String mpassword = etpass.getText().toString();
                 String memail = etemail.getText().toString();
                 String mreserverdWord = etpalabraR.getText().toString();
-                
-                
-                if(!muser.isEmpty() && !mfullname.isEmpty() && !memail.isEmpty()
-                && !mpassword.isEmpty() && !mreserverdWord.isEmpty())
-                {
-                    saveUser(muser,mfullname,memail,mpassword,mreserverdWord);
-                }else
-                {
+
+
+                if (!muser.isEmpty() && !mfullname.isEmpty() && !memail.isEmpty()
+                        && !mpassword.isEmpty() && !mreserverdWord.isEmpty()) {
+
+                    //Buscar el usuario en la tabla user a traves del metodo searchUser
+                    //si no lo encuentra antes de guardar
+                    if (!searchUser(muser)) {
+                        // instrucciones para guardar el registro ( por que no lo encuentra)
+                        // tambien poner si quiero uno nuevo o actualizar, en este caso es por insert
+                        //true es para uno nuevo // false seria por que ya existe y va a actualizar
+                        saveUser(muser,mfullname,memail,mpassword,mreserverdWord,true);
+                    } else {
+                        //instrucciones para generar el error de existencia del user
+                        tvmessage.setTextColor(Color.RED);
+                        tvmessage.setText("Usuario existente , intente con otro ");
+                    }
+                } else {
                     tvmessage.setText("Debe ingresar todos los datos ");
                 }
-                
             }
+
         });
 
 
     }
 
-    private void saveUser(String muser, String mfullname, String memail, String mpassword, String mreserverdWord) {
+    private boolean searchUser(String muser) {
+        //Instanciar la clase de SQLiteDatabase en modo lectura, hacer busqueda
+        SQLiteDatabase odbUsers = oUsers.getReadableDatabase();
+        //ejecutar la instruccion
+        String query = "Select user from user where user ='"+muser+"'";
+        //Crear un cursosr para almacenar los registror que retorna el query
+        // en el null iria la instruccion de select , pero select ya la tenemos en la misma variable query
+        Cursor cUsers = odbUsers.rawQuery(query,null);
+
+        //movetofirst devuelve boolean
+        if(cUsers.moveToFirst()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void saveUser(String muser, String mfullname, String memail, String mpassword, String mreserverdWord,
+                          boolean mtipoinst) {
+        // cuando queremos hacer busqueda , lectura
+        // cuando hacemos insert , delet etc, es en modo escritura
+
+        //vamos a instanciar objeto SQLitedatabase en modo escritura
+        SQLiteDatabase oUserWrite = oUsers.getWritableDatabase();
+        if(mtipoinst){// preguntando por el verdadero y agregamos un user
+
+            //manejo de excepciones o posibles errores de la app
+            try{
+                //crear tabla tipo contentvalues para pasar estos datos
+                //a tabla fisica
+                //contenedor de datos del contacto
+                ContentValues cvUser = new ContentValues();
+                //.put debe de llamarse como en la tabla
+                //lo que hace es enlazar la tabla en ram por la fisica y juntar los datos
+                cvUser.put("user",muser);
+                cvUser.put("fullname",mfullname);
+                cvUser.put("email", memail);
+                cvUser.put("password", mpassword);
+                cvUser.put("reservedword", mreserverdWord);
+                oUserWrite.insert("user",null, cvUser);
+                //apenas entre los datos tenemos que cerrar
+                oUserWrite.close();
+                tvmessage.setTextColor(Color.GREEN);
+                tvmessage.setText("Usuario agregado correctamente...");
+
+
+
+            }catch(Exception e){
+                tvmessage.setTextColor(Color.RED);
+                tvmessage.setText("Error al guardar");
+            }
+        }else{
+            //ya existe al ser falso, se actualizaria
+        }
     }
 }
+
